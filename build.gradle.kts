@@ -1,23 +1,36 @@
 plugins {
     kotlin("jvm") version "1.9.0"
+    id("maven-publish")
 }
 
 group = "studio.hcmc"
-version = "1.0-SNAPSHOT"
+version = "0.0.4"
 
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    implementation(project(":kotlin-protocol-extension"))
-    implementation(project(":ktor-plugin-extension"))
-
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.4.0")
-
-    implementation("io.ktor:ktor-server-core-jvm:2.3.2")
+    maven { setUrl("https://jitpack.io") }
 }
 
 kotlin {
     jvmToolchain(17)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "studio.hcmc"
+            artifactId = "ktor-plugin-accepted-at"
+            version = "0.0.4"
+            from(components["java"])
+        }
+    }
+}
+
+dependencies {
+    implementation("com.github.hcmc-studio:kotlin-protocol-extension:0.0.4-build-02")
+    implementation("com.github.hcmc-studio:ktor-plugin-accepted-at:0.0.4-build-01")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.4.0")
+
+    implementation("io.ktor:ktor-server-core-jvm:2.3.2")
 }
