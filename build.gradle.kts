@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "studio.hcmc"
-version = "0.0.10"
+version = "0.0.11"
 
 repositories {
     mavenCentral()
@@ -20,15 +20,15 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "studio.hcmc"
             artifactId = "ktor-plugin-accepted-at"
-            version = "0.0.10"
+            version = "0.0.11"
             from(components["java"])
         }
     }
 }
 
 dependencies {
-    implementation("com.github.hcmc-studio:kotlin-protocol-extension:0.0.4-release")
-    implementation("com.github.hcmc-studio:ktor-plugin-accepted-at:0.0.4-release")
+    implementation("com.github.hcmc-studio:kotlin-protocol-extension:0.0.10-release")
+    implementation("com.github.hcmc-studio:ktor-plugin-accepted-at:0.0.10-release")
 
     implementation("org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.4.0")
 
