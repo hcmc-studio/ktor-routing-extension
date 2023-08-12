@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "studio.hcmc"
-version = "0.0.12"
+version = "0.0.13"
 
 repositories {
     mavenCentral()
@@ -20,7 +20,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "studio.hcmc"
             artifactId = "ktor-plugin-accepted-at"
-            version = "0.0.12"
+            version = "0.0.13"
             from(components["java"])
         }
     }
