@@ -10,7 +10,7 @@ import studio.hcmc.kotlin.protocol.io.Response
 import studio.hcmc.ktor.plugin.acceptedAt
 
 suspend fun ApplicationCall.respondEmpty(status: HttpStatusCode) {
-    respond(status)
+    respond(status, Response.Empty(acceptedAt))
 }
 
 suspend inline fun <reified T> ApplicationCall.respondObject(status: HttpStatusCode, result: T) {
