@@ -5,6 +5,7 @@ import io.ktor.server.application.*
 import io.ktor.server.http.*
 import io.ktor.server.response.*
 import kotlinx.datetime.toJavaInstant
+import studio.hcmc.kotlin.protocol.Creatable
 import studio.hcmc.kotlin.protocol.Modifiable
 import studio.hcmc.kotlin.protocol.io.Response
 import studio.hcmc.ktor.plugin.acceptedAt
@@ -17,7 +18,9 @@ suspend inline fun <reified T> ApplicationCall.respondObject(status: HttpStatusC
     if (result is Modifiable) {
         val lastModifiedAt = result.lastModifiedAt
         if (lastModifiedAt == null) {
-            response.header(HttpHeaders.LastModified, httpDateFormat.format(result.createdAt.toJavaInstant()))
+            if (result is Creatable) {
+                response.header(HttpHeaders.LastModified, httpDateFormat.format(result.createdAt.toJavaInstant()))
+            }
         } else {
             response.header(HttpHeaders.LastModified, httpDateFormat.format(lastModifiedAt.toJavaInstant()))
         }
